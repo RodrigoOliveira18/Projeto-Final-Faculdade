@@ -3,26 +3,21 @@ const VERSO = "carta_verso";
 const CARTA = "carta";
 const ICON = "icon";
 
-let imgss =[
-    'patrula01', 'patrulha02','patrulha03','pj_azul','pj_verde','pj_vermelho','pj_vilao','pj_vilao02x'];
 
-
-    let cartas = null;
     InicioJogo();
 
     function InicioJogo(){
 
-        cartas = criarCartasImgss(imgss)
-        Embaralhar(cartas);
-
-        inciarCartas(cartas);
+        
+      
+        inciarCartas(jogo.criarCartasImgss());
     }
 
 
     function inciarCartas(cartas){
         let tabuleiro = document.getElementById("tabuleiro");
 
-        cartas.forEach(carta => {
+       jogo.cartas.forEach(carta => {
             let cartaElement = document.createElement('div')
             cartaElement.id = carta.id;
             cartaElement.classList.add(CARTA);
@@ -61,7 +56,7 @@ let imgss =[
                 cartaElementfase.appendChild(iconElemtent);
 
             }else{
-                cartaElementfase.innerHTML = "./img/verso.png"
+
             }
             element.appendChild(cartaElementfase);
             
@@ -87,40 +82,8 @@ let imgss =[
 
 
 
-criarCartasImgss(imgss)
-
-function criarCartasImgss(imgss){
-
-    let cartas = [];
-
-    imgss.forEach((img) => {
-        cartas.push(criarParImgss(img));
-    })
-    return cartas.flatMap (par => par);
-
-}
 
 
-
-function criarParImgss(img){
-    return [{
-        id: criarIdcomImg(img),
-        icon: img,
-        flipped: false,
-
-    },
-    
-    {
-        id: criarIdcomImg(img),
-        icon: img,
-        flipped: false,
-    }]
-
-}
-
-function criarIdcomImg(img){
-    return img + parseInt(Math.random() *1000);
-}
 
 
 
